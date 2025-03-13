@@ -6,6 +6,37 @@
     <title>Amigo secreto juego</title>
 </head>
 <body>
+    <input type="text" id="myInput" placeholder="Escribe un nombre!">
+    <button id="addButton">Adicionar</button>
+    <button id="sortButton">Sortear</button>
+    <ul id="nameList"></ul>
     
 </body>
+
+<script>
+    var addButton = document.getElementById('addButton');
+    var sortButton = document.getElementById('sortButton');
+    var nameList = document.getElementById('nameList');
+
+    addButton.addEventListener('click', function() {
+        var inputValue = document.getElementById('myInput').value;
+        if (inputValue) {
+            var listItem = document.createElement('li');
+            listItem.textContent = inputValue;
+            nameList.appendChild(listItem);
+            document.getElementById('myInput').value = ''; // Clear the input field
+        }
+    });
+
+    sortButton.addEventListener('click', function() {
+        var items = nameList.getElementsByTagName('li');
+        if (items.length > 0) {
+            var randomIndex = Math.floor(Math.random() * items.length);
+            var randomItem = items[randomIndex].textContent;
+            alert('El nombre sorteado es: ' + randomItem);
+        } else {
+            alert('No hay nombres en la lista para sortear.');
+        }
+    });
+</script>
 </html>
